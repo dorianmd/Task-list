@@ -1,5 +1,7 @@
 # Aplikacja webowa Lista Zadań – Dokumentacja i Specyfikacja Projektu
 
+[![Wersja Produkcyjna](https://img.shields.io/badge/Aplikacja_Live-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://task-list-omega-kohl.vercel.app/)
+
 Aplikacja webowa do zarządzania zadaniami, stworzona przy użyciu Next.js (App Router) i TypeScript. Zapewnia wygodne i płynne środowisko do organizacji czasu, łącząc architekturę opartą na komponentach klienckich z bezpiecznym zapleczem API.
 
 ## 1. Specyfikacja Projektu
