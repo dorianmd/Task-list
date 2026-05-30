@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client"
+  output   = "./generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique(map: "user_email_unique")
+  password  String
+  createdAt DateTime @default(now())
+  tasks     Task[]
+  tags      Tag[]
+}
+
+model Task {
+  id          Int      @id @default(autoincrement())
+  userId      String   @map("user_id")
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  parentId    Int?     @map("parent_id")
+  parent      Task?    @relation("TaskToSubtasks", fields: [parentId], references: [id], onDelete: Cascade)
+  subtasks    Task[]   @relation("TaskToSubtasks")
+  title       String
+  description String
+  completed   Boolean  @default(false)
+  isImportant Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  deadline    DateTime
+  tags        Tag[]
+}
+
+model Tag {
+  id     Int    @id @default(autoincrement())
+  name   String
+  color  String @default("#3B82F6")
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tasks  Task[]
+
+  @@unique([userId, name])
+}

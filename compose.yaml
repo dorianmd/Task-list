@@ -1,0 +1,16 @@
+services:
+  db:
+    container_name: postgres_tasklist
+    image: postgres:16-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: tasklist
+    volumes:
+        - ./db_data_tasklist:/var/lib/postgresql/data
+
+volumes:
+  db_data_tasklist:
