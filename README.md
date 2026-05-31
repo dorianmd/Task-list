@@ -162,3 +162,9 @@ npm start
 ```
 
 Aplikacja będzie dostępna pod adresem http://localhost:3000.
+
+## 6. Autorzy
+
+* **Dorian Mądrzycki**
+* **Kacper Łangowski**
+* **Patryk Michałowski**
