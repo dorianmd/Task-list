@@ -8,42 +8,42 @@ Aplikacja webowa do zarządzania zadaniami, stworzona przy użyciu Next.js (App 
 
 ### i. Opis problemu i projektu
 
-Współczesne środowisko pracy i nauki wymaga przetwarzania dużej ilości informacji i dynamicznie zmieniających się priorytetów. Klasyczne, papierowe formy notowania zadań lub proste aplikacje listowe nie oferują wystarczającej elastyczności.
+Współczesne środowisko pracy, nauki oraz codziennego życia prywatnego generuje ogromną ilość informacji, zobowiązań i dynamicznie zmieniających się priorytetów. Klasyczne, papierowe formy notowania lub proste aplikacje listowe bardzo często okazują się niewystarczające, prowadząc do chaosu informacyjnego, zapominania o drobnych sprawach domowych oraz utraty kontroli nad ważnymi terminami zawodowymi.
 
-Niniejsza aplikacja rozwiązuje problem braku przejrzystości w zarządzaniu złożonymi projektami poprzez wprowadzenie struktury drzewiastej (zadań nadrzędnych i subtasków) oraz zaawansowanego systemu filtrowania czasowego i tematycznego. Pozwala to użytkownikowi skupić się na zadaniach krytycznych i minimalizuje ryzyko niedotrzymania terminów.
+Aplikacja *Lista Zadań* rozwiązuje ten problem, oferując elastyczny, cyfrowy system do codziennego planowania obowiązków i kompleksowej organizacji czasu. Zamiast płaskiej, nieczytelnej struktury, system pozwala na rejestrowanie głównych projektów i zadań oraz rozbijanie ich na mniejsze podzadania (subtaski), co umożliwia precyzyjne monitorowanie postępów. Dodatkowo wbudowany moduł dynamicznych tagów i zaawansowane filtry czasowe pozwalają użytkownikowi błyskawicznie oddzielić obowiązki zawodowe od spraw prywatnych, wyselekcjonować zadania krytyczne na dany dzień i skutecznie zarządzać codzienną produktywnością.
 
 ### ii. Uzasadnienie wyboru technologii aplikacji internetowej
 
-Wybór architektury aplikacji internetowej (Web Application) zamiast aplikacji desktopowej lub mobilnej podyktowany jest następującymi zaletami:
+Wybór architektury aplikacji internetowej typu Single Page Application (SPA) zamiast klasycznego oprogramowania desktopowego uwarunkowany jest następującymi zaletami architektonicznymi i użytkowymi:
 
-1. Dostępność cross-platform: Brak konieczności instalacji zewnętrznego oprogramowania – aplikacja działa na każdym systemie (Windows, macOS, Linux, iOS, Android) wyposażonym w przeglądarkę internetową.
-2. Centralizacja danych w chmurze: Wszystkie zadania synchronizują się w czasie rzeczywistym, co pozwala na płynne przełączanie urządzeń (np. komputer w pracy, telefon w podróży).
-3. Optymalizacja dystrybucji zmian (CI/CD): Wszelkie aktualizacje i poprawki bezpieczeństwa (np. mechanizmu JWT) są wdrażane natychmiastowo po stronie serwera chmurowego, bez angażowania użytkownika końcowego.
-4. Brak narzutu na zasoby lokalne: Ciężka logika biznesowa i zapytania bazodanowe są przetwarzane po stronie serwera i chmury, co oszczędza zasoby lokalne urządzenia użytkownika.
+1. **Pełna wieloplatformowość (Cross-platform):** Kod źródłowy tworzony jest tylko raz, a użytkownik ma stały dostęp do swoich list z poziomu dowolnego urządzenia (komputer, tablet, smartfon) wyposażonego w przeglądarkę, bez konieczności pobierania i instalowania zewnętrznych aplikacji.
+2. **Centralizacja bazy danych w chmurze:** Wszystkie operacje na danych synchronizują się w chmurze w czasie rzeczywistym. Zapewnia to natychmiastową spójność informacji podczas płynnego przełączania się między urządzeniami (np. planowanie zadań na komputerze w biurze i szybki wgląd w listę zakupów czy spraw prywatnych na telefonie podczas powrotu do domu).
+3. **Optymalizacja zasobów urządzenia końcowego:** Cała ciężka logika biznesowa, operacje kryptograficzne oraz zapytania relacyjne są oddelegowane na serwer i chmurowy klaster bazodanowy. Urządzenie użytkownika odpowiada jedynie za renderowanie interfejsu (warstwę prezentacji), co gwarantuje wysoką wydajność systemu i niskie zużycie baterii na smartfonach.
 
 ### iii. Wymagania funkcjonalne
 
-* Konta użytkowników i autoryzacja: Bezpieczne rejestrowanie i logowanie oparte na tokenach JWT z wykorzystaniem ciasteczek HttpOnly. Płynne odnawianie sesji oraz automatyczne logowanie bezpośrednio po rejestracji.
-* Złożone zadania i podzadania (Subtasks): Pełny proces CRUD dla struktury hierarchicznej – możliwość tworzenia głównych zadań oraz przypisywania do nich wielu mniejszych podzadań.
-* Kategoryzacja za pomocą tagów: Niestandardowe, kolorowe tagi (tworzone dynamicznie) umożliwiające łatwe grupowanie i segmentację zadań.
-* Filtracja i wyszukiwanie: Wbudowane inteligentne widoki: Wszystkie, Ważne, Dzisiaj, Nadchodzące, Zaległe, Skończone. Możliwość krzyżowania filtrów z tagami i tekstową wyszukiwarką działającą w czasie rzeczywistym.
-* Zarządzanie profilem i bezpieczeństwem: Możliwość dokładnego określenia daty zakończenia zadania (z walidacją UTC), opcja bezpiecznej zmiany hasła oraz trwałego usunięcia konta wraz ze wszystkimi powiązanymi danymi w Strefie Zagrożenia.
+* **Konta użytkowników i autoryzacja:** Bezpieczna rejestracja oraz logowanie oparte na tokenach JWT (JSON Web Tokens) zapisywanych w ciasteczkach HttpOnly. Automatyczne logowanie po rejestracji oraz mechanizm płynnego odnawiania sesji.
+* **Zarządzanie zadaniami i podzadaniami:** Pełna obsługa procesu CRUD (Create, Read, Update, Delete) dla zadań głównych z możliwością dopisywania do nich wielu powiązanych podzadań (subtasków).
+* **Dynamiczna kategoryzacja (Tagi):** Możliwość tworzenia w locie własnych etykiet, definiowania ich nazwy oraz wyboru koloru z palety HEX w celu tematycznej segmentacji danych (np. wyraźne rozgraniczenie zadań na tagi: *Praca*, *Dom*, *Zakupy*, *Uczelnia*).
+* **Inteligentne filtrowanie i wyszukiwanie:** Wbudowane widoki czasowe (Dzisiaj, Nadchodzące) oraz statusowe (Wszystkie, Ważne, Zaległe, Skończone) współpracujące z tekstową wyszukiwarką działającą w czasie rzeczywistym.
+* **Bezpieczeństwo profilu (Strefa Zagrożenia):** Możliwość bezpiecznej zmiany hasła oraz opcja trwałego usunięcia konta, skutkująca kaskadowym wyczyszczeniem z bazy wszystkich powiązanych danych użytkownika.
 
 ### iv. Wymagania pozafunkcjonalne
 
-* Bezpieczeństwo danych: Haszowanie haseł użytkowników za pomocą bezpiecznego algorytmu bcrypt. Autoryzacja oparta o tokeny JWT (JSON Web Tokens) przesyłane w bezpiecznych ciasteczkach HttpOnly, co zapobiega atakom typu XSS.
-* Wydajność interfejsu (UX): Asynchroniczne operacje na danych (AJAX/Fetch) eliminujące potrzebę pełnego przeładowania strony internetowej przy interakcjach użytkownika, co upodabnia działanie aplikacji do systemów natywnych.
-* Responsywność (RWD): Dostosowanie interfejsu (layoutu) ekranów autoryzacji oraz zarządzania zadaniami do urządzeń o różnych rozdzielczościach ekranu, ze szczególnym uwzględnieniem płynnych transformacji widoku na urządzeniach mobilnych.
+* **Bezpieczeństwo i poufność danych:** Jednokierunkowe haszowanie haseł w bazie danych algorytmem bcrypt. Zabezpieczenie tokenów sesyjnych flagą HttpOnly, co uniemożliwia ich odczyt przez skrypty JavaScript i skutecznie blokuje ataki typu XSS (Cross-Site Scripting).
+* **Wydajność i asynchroniczność (UX):** Wykorzystanie architektury SPA i asynchronicznych zapytania Fetch (AJAX) do komunikacji z API. Zmiany statusów zadań czy dodawanie tagów odbywają się bez pełnego przeładowywania strony, zapewniając płynność interfejsu.
+* **Responsywność (RWD):** Pełne dostosowanie układu graficznego do smartfonów i monitorów przy użyciu klas responsywnych frameworka Tailwind CSS (Media Queries), gwarantujące brak poziomego przewijania na ekranach mobilnych.
 
 ### v. Potencjalni odbiorcy systemu
 
-1. Freelancerzy i Programiści: Osoby zarządzające wieloma niezależnymi projektami, potrzebujące rozbijać duże kamienie milowe na mniejsze zadania (subtaski).
-2. Studenci i Uczniowie: Osoby poszukujące prostego narzędzia do organizacji terminów egzaminów, projektów grupowych i codziennych obowiązków naukowych.
+1. **Osoby pracujące w trybie zadaniowym / Freelancerzy:** Potrzebujący przejrzystego narzędzia do organizacji niezależnych projektów komercyjnych i rozbijania celów na mniejsze etapy.
+2. **Studenci i Uczniowie:** Osoby poszukujące centralnego punktu do zarządzania terminami egzaminów, zaliczeń i codziennych obowiązków naukowych.
+3. **Użytkownicy indywidualni (Zastosowanie domowe):** Osoby chcące uporządkować swoje codzienne życie prywatne – od planowania domowych budżetów i list zakupów, przez organizację rutynowych obowiązków, aż po zarządzanie długoterminowymi celami osobistymi.
 
 ### vi. Korzyści biznesowe
 
-1. Wzrost produktywności użytkowników: Dzięki eliminacji chaosu informacyjnego i jasnemu podziałowi na priorytety aplikacji, użytkownicy redukują czas marnowany na planowanie i minimalizują ryzyko niedotrzymania terminów.
-2. Potencjał monetyzacji (SaaS): Architektura systemu pozwala na łatwe wprowadzenie kont Premium (np. limitowanie liczby tagów lub zaawansowane statystyki produktywności dla firm).
+1. **Minimalizacja chaosu informacyjnego:** Struktura zadań i podzadań oraz czytelne filtry redukują czas potrzebny na organizację pracy i bezpośrednio wpływają na wzrost produktywności oraz redukcję stresu w życiu codziennym użytkownika.
+2. **Skalowalność i potencjał monetyzacji (SaaS):** Architektura oparta o Next.js i relacyjną bazę w chmurze pozwala na bezproblemowe wdrożenie planów Premium (np. limity liczby zadań, współdzielenie list z członkami rodziny lub zespołem pracowniczym, czy zaawansowane statystyki czasu pracy).
 
 ---
 
@@ -60,10 +60,10 @@ Wybór architektury aplikacji internetowej (Web Application) zamiast aplikacji d
 
 Aplikacja ściśle realizuje zasady czystej architektury poprzez kategoryczny podział na warstwy odpowiedzialności (Separation of Concerns):
 
-* `/_components` – Warstwa Prezentacji (Widoku): Modułowe, izolowane komponenty interfejsu użytkownika (React / "use client") odpowiedzialne za renderowanie HTML i przechwytywanie zdarzeń użytkownika.
+* `/app/(protected)/_components` – Warstwa Prezentacji (Widoku): Modułowe, izolowane komponenty interfejsu użytkownika (React / "use client") odpowiedzialne za renderowanie HTML i przechwytywanie zdarzeń użytkownika.
 * `/app/api` – Warstwa Logiki i Kontrolerów: REST API odbierające żądania HTTP, realizujące procesy biznesowe i kontrolujące przepływ danych.
-* `/lib` oraz `/prisma` – Warstwa Danych (Persystencji): Definicja modeli relacyjnych bazy danych oraz wzorzec Singleton dla klienta Prisma ORM, zapewniający bezpieczne transakcje i operacje CRUD.
-* `proxy.ts` (Middleware) – Warstwa Bezpieczeństwa: Globalny filtr żądań (Guard/Interceptor) działający jako Middleware do globalnej i bezpiecznej walidacji żądań HTTP (obsługa wygasania tokenów JWT i Silent Refresh).
+* `/lib` oraz `/prisma` – Warstwa Backendowa i Danych: Zawiera pliki narzędziowe backendu oraz definicję modeli relacyjnych wraz z klientem Prisma ORM, co całkowicie uniezależnia logikę biznesową od warstwy prezentacji.
+* `proxy.ts` (Middleware) – Warstwa Bezpieczeństwa: Globalny filtr żądań działający jako Middleware do globalnej, bezpiecznej walidacji żądań HTTP oraz weryfikacji i odnawiania tokena JWT.
 
 ---
 
@@ -72,28 +72,28 @@ Aplikacja ściśle realizuje zasady czystej architektury poprzez kategoryczny po
 Aplikacja opiera się na 3 głównych tabelach z zachowaniem pełnej spójności referencyjnej:
 
 ### 1. Tabela User
-
-* `id` (Int, PK) - Unikalny identyfikator użytkownika (Autoincrement).
-* `email` (String, Unique Index) - Adres e-mail służący jako login.
-* `password` (String) - Zahaszowany ciąg hasła.
-* `createdAt` (DateTime) - Data rejestracji konta.
+* `id` (`String`, PK) – Unikalny identyfikator użytkownika generowany jako bezpieczny ciąg tekstowy `UUID`.
+* `email` (`String`, Unique) – Adres e-mail z indeksem unikalności, służący jako login do systemu.
+* `password` (`String`) – Jednokierunkowo zahaszowany ciąg hasła użytkownika (algorytm bcrypt).
+* `createdAt` (`DateTime`) – Znacznik czasu rejestracji konta.
 
 ### 2. Tabela Task
+* `id` (`Int`, PK) – Automatycznie inkrementowany unikalny identyfikator zadania.
+* `userId` (`String`, FK) – Klucz obcy powiązany z `User.id` (Relacja jeden-do-wielu, z regułą `onDelete: Cascade`).
+* `parentId` (`Int`, FK, Nullable) – **Klucz obcy w relacji jedno-tabelarycznej (self-relation)**, wskazujący na `id` zadania nadrzędnego. Odpowiada za powiązanie zadań głównych z ich subtaskami.
+* `title` (`String`) – Nazwa zadania.
+* `description` (`String`) – Szczegółowy opis zadania.
+* `completed` (`Boolean`) – Status wykonania zadania (wartość domyślna: `false`).
+* `isImportant` (`Boolean`) – Flaga oznaczająca wysoki priorytet (wartość domyślna: `false`).
+* `deadline` (`DateTime`) – Data ostatecznego wykonania zadania z walidacją strefy UTC.
+* `createdAt` (`DateTime`) – Data utworzenia wpisu.
 
-* `id` (Int, PK) - Unikalny identyfikator zadania.
-* `title` (String) - Nazwa zadania.
-* `description` (String, Nullable) - Szczegółowy opis.
-* `completed` (Boolean, Default: false) - Status wykonania.
-* `isImportant` (Boolean, Default: false) - Flaga priorytetu.
-* `deadline` (DateTime, Nullable) - Data ostatecznego wykonania.
-* `userId` (Int, FK) - Powiązanie z tabelą `User.id` (Relacja jeden-do-wielu).
-* `parentId` (Int, FK, Nullable) - Rekurencyjne powiązanie z `Task.id` (odpowiada za strukturę drzewiastą subtasków).
+### 3. Model Tag
+* `id` (`Int`, PK) – Automatycznie inkrementowany unikalny identyfikator tagu.
+* `name` (`String`) – Nazwa etykiety.
+* `userId` (`String`, FK) – Klucz obcy powiązany z `User.id` (Relacja jeden-do-wielu, z regułą `onDelete: Cascade`).
 
-### 3. Tabela Tag
-
-* `id` (Int, PK) - Unikalny identyfikator tagu.
-* `name` (String) - Nazwa etykiety.
-* `color` (String) - Kod koloru w formacie HEX.
+> **Uwaga strukturalna:** Relacja między modelami `Task` a `Tag` to relacja **Wiele-do-Wielu (Many-to-Many)**, zarządzana przez automatyczną tabelę łączącą generowaną przez Prisma ORM. Dodatkowo model `Tag` posiada unikalność złożoną `@@unique([userId, name])`, co uniemożliwia jednemu użytkownikowi stworzenie duplikatów tagów o tej samej nazwie, pozwalając jednocześnie na niezależne tworzenie takich samych tagów przez innych użytkowników.
 
 Między tabelą `Task` a `Tag` występuje relacja wiele-do-wielu (Many-to-Many), reprezentowana w bazie danych przez automatyczną tabelę łączącą `_TagToTask`.
 
@@ -107,7 +107,7 @@ Postępuj zgodnie z poniższymi krokami, aby uruchomić aplikację w środowisku
 
 * Node.js (zalecana wersja 18+)
 * npm lub yarn
-* Działający silnik Docker (do szybkiego podniesienia bazy PostgreSQL)
+* Działający silnik Docker (do szybkiego postawienia PostgreSQL)
 
 ### 2. Klonowanie repozytorium i instalacja zależności
 
@@ -149,9 +149,16 @@ npx prisma db push
 
 ### 6. Uruchomienie serwera Next.js
 
+Development:
 ```bash
 npm run dev
 
+```
+
+Production:
+```bash
+npm run build
+npm start
 ```
 
 Aplikacja będzie dostępna pod adresem http://localhost:3000.
